@@ -1,0 +1,33 @@
+CSVFormat.DEFAULT()
+    Apache Commons CSV supports many CSV formats which includes SQL, Excel based CSV etc. (They are different from each other based on delimiter, escape characters etc.)
+    Default() is creating the regular CSV formatter based on the general specification.
+
+    public static final CSVFormat DEFAULT = new CSVFormat()
+    DEFAULT has a type of CSVFormat. This is just creating a new CSVFromat instance - doing only the initialization. Constructor has lots of options though :)
+
+    private CSVFormat(final String delimiter, final Character quoteChar, final QuoteMode quoteMode, final Character commentStart, final Character escape,
+            final boolean ignoreSurroundingSpaces, final boolean ignoreEmptyLines, final String recordSeparator, final String nullString,
+            final Object[] headerComments, final String[] header, final boolean skipHeaderRecord, final boolean allowMissingColumnNames,
+            final boolean ignoreHeaderCase, final boolean trim, final boolean trailingDelimiter, final boolean autoFlush,
+            final DuplicateHeaderMode duplicateHeaderMode) {
+        this.delimiter = delimiter;
+        this.quoteCharacter = quoteChar;
+        this.quoteMode = quoteMode;
+        this.commentMarker = commentStart;
+        this.escapeCharacter = escape;
+        this.ignoreSurroundingSpaces = ignoreSurroundingSpaces;
+        this.allowMissingColumnNames = allowMissingColumnNames;
+        this.ignoreEmptyLines = ignoreEmptyLines;
+        this.recordSeparator = recordSeparator;
+        this.nullString = nullString;
+        this.headerComments = toStringArray(headerComments);
+        this.headers = clone(header);
+        this.skipHeaderRecord = skipHeaderRecord;
+        this.ignoreHeaderCase = ignoreHeaderCase;
+        this.trailingDelimiter = trailingDelimiter;
+        this.trim = trim;
+        this.autoFlush = autoFlush;
+        this.quotedNullString = quoteCharacter + nullString + quoteCharacter;
+        this.duplicateHeaderMode = duplicateHeaderMode;
+        validate();
+    }
